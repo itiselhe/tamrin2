@@ -1,9 +1,11 @@
 import {useState} from "react";
+import List from "./List";
 
 function App() {
 
   const [list , setList] = useState([ ]);
-  const [inputValue , setInputValue] = useState(" ")
+  const [inputValue , setInputValue] = useState(" ");
+  const [showBtn , setBtn] = useState(false)
 
   function addValue(e) {
     setInputValue(e.target.value)
@@ -13,6 +15,12 @@ function App() {
     e.preventDefault()
     setList([...list , {title : inputValue , id: list.length} ])
     setInputValue(" ")
+    console.log(list)
+  }
+
+  function showList(e){
+    e.preventDefault();
+    setBtn(!showBtn)
   }
 
   return (
@@ -20,7 +28,9 @@ function App() {
       <h1>To Do List</h1>
       <input onChange={addValue} value={inputValue}></input>
       <button onClick={add}>add</button>
-      <button>show List</button>
+      <button onClick={showList}>{showBtn===false ? <i>show list</i> : <i>hide list</i>}</button>
+
+      <List list = {list} show={showBtn}/>
     </>
   );
 }
