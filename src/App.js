@@ -15,7 +15,6 @@ function App() {
     e.preventDefault()
     setList([...list , {title : inputValue , id: list.length} ])
     setInputValue(" ")
-    console.log(list)
   }
 
   function showList(e){
@@ -30,7 +29,7 @@ function App() {
       <button onClick={add}>add</button>
       <button onClick={showList}>{showBtn===false ? <i>show list</i> : <i>hide list</i>}</button>
 
-      <List list = {list} show={showBtn}/>
+      <List list = {list} show={showBtn} setList={setList}/>
     </>
   );
 }
